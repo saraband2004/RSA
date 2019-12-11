@@ -20,8 +20,15 @@ public class StringToBinary{
 	} 
 	
 	public static String binaryToString(String s) {
+		
+		while(s.length() %8 != 0) {
+			s = "0"+s;
+		}
+		
 		char[] c = s.toCharArray();
 		char[] cc = new char[s.length() / 8];
+		
+		
 		for (int i=0; i<c.length ; i+=8) {
 			int temp = 0;
 			if (c[i] == '1') temp+= 1;

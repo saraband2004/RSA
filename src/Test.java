@@ -4,7 +4,7 @@ import java.lang.*;
 import java.math.BigInteger; 
 
 
-public class Solution {
+public class Test {
  
 
 	public static void main(String[] args) {
@@ -18,14 +18,15 @@ public class Solution {
 		RSAsystem rsa = new RSAsystem(new BigPrimesFactory(), pad);
 		
 		String[] str= rsa.publicKeyGenerator();
-		System.out.println(str[0]+"\n" +str[1]);
+	//	System.out.println(str[0]+"\n" +str[1]);
 		String RSA = str[0];
 		String key = str[1];
 		
-		String encry_message = encoder.encode("iiiiiii", RSA, key);
+		String encry_message = encoder.encode("aAbBCcdefghijklm1234567()*%#$%#$@", RSA, key);
 		System.out.println(encry_message);
-		
-		System.out.println(rsa.decode(encry_message));	
-		
+	
+		BigInteger bg = new BigInteger (encry_message);
+	//	System.out.println(rsa.rsaFunction(bg, rsa.privateKey));
+		System.out.println(rsa.decode(encry_message));
 	}
 }

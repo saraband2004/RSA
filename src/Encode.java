@@ -12,12 +12,15 @@ public class Encode {
 	}
 	public String encode(String message_s, String RSA_s, String publicKey_s) {
 		BigInteger RSA= new BigInteger(RSA_s);
+		
+		String str = RSA.toString(2);
+		
 		BigInteger publicKey = new BigInteger(publicKey_s);
 		String message_b = StringToBinary.stringToBinary(message_s);
-		String message_b_p= pad.padding(message_b, 70);
+		String message_b_p= pad.padding(message_b, str.length() - 3);
 		BigInteger message = new BigInteger(message_b_p,2);
 		
-		System.out.println(message_s+"\n"+message_b+"\n"+message_b_p+"\n"+message);
+	//	System.out.println(message_s+"\n"+message_b+"\n"+message_b_p+"\n"+message);
 		
 		BigInteger res = rsaFunction(message, publicKey, RSA);
 		return res.toString();
