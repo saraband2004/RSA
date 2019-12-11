@@ -32,15 +32,29 @@ class RSAsystem{
 		}
 		return false;
 	}
+	public BigInteger random() {
+		int len = RSA.toString(2).length();
+		String s = "1";
+		Random rng = new Random();
+		while ( -- len > 2) {
+			if (rng.nextInt(2) == 0) {
+				s = "0"+ s;
+			}
+			else s = "1" + s;			
+		}
+		return new BigInteger(s, 2);
+	}
+	
 	
 	public String[] publicKeyGenerator() {
-		publicKey = BigInteger.valueOf(new Random().nextInt());
+		publicKey = random();
 		while (!publicKeyVerify(publicKey)) {
-			publicKey = BigInteger.valueOf(new Random().nextInt());
+			publicKey = random();
 			//System.out.println("LOL");
 		}
 		//System.out.println(publicKey);
 		privateKeyGenerator(publicKey);
+		//System.out.println(privateKey);
 		return new String[] {RSA.toString(), publicKey.toString()};
 	}
 	
