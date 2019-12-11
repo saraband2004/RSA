@@ -14,8 +14,10 @@ class RSAsystem{
 		BigInteger result = message.modPow(key, RSA);
 		return result;
 	}
-	public RSAsystem(BigPrimes bp) {
+	PaddingScheme pad;
+	public RSAsystem(BigPrimes bp, PaddingScheme pad) {
 		String [] str = bp.getPrimes();
+		this.pad = pad;
 		RSA1 = new BigInteger(str[0]);
 		RSA2 = new BigInteger(str[1]);
 		
@@ -28,17 +30,39 @@ class RSAsystem{
 		}
 		return false;
 	}
-	public BigInteger[] publicKeyGenerator() {
+	public String[] publicKeyGenerator() {
 		publicKey = BigInteger.valueOf(new Random().nextInt(100000));
 		while (!publicKeyVerify(publicKey)) {
 			publicKey = BigInteger.valueOf(new Random().nextInt(100000));
-			System.out.println("LOL");
+			//System.out.println("LOL");
 		}
-		return new BigInteger[] {RSA, publicKey};
+		privateKeyGenerator(publicKey);
+		return new String[] {RSA.toString(), publicKey.toString()};
 	}
 	public BigInteger privateKeyGenerator(BigInteger publicKey) {
 		BigInteger key =
 				publicKey.modInverse(lambda);
 		return key;
 	}
+	
+	public String decode (String message_s) {
+		BigInteger message = new BigInteger(message_s);
+		BigInteger message_de = rsaFunction(message, privateKey);
+		String str = message_de.toString(2);
+		str = pad.unpadding(str);
+		return StringToBinary.binaryToString(str);		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
