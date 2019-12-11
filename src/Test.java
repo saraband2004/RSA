@@ -22,7 +22,7 @@ public class Test {
 		String RSA = str[0];
 		String key = str[1];
 		
-		String encry_message = encoder.encode("aAbBCcdefghijklm1234567()*%#$%#$@", RSA, key);
+		String encry_message = encoder.encode("abBdefghijkl\n12567()*%#$@^&*~`\'\" 	\n-_+=a", RSA, key);
 		System.out.println(encry_message);
 	
 		BigInteger bg = new BigInteger (encry_message);

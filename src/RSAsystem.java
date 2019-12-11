@@ -39,7 +39,7 @@ class RSAsystem{
 			publicKey = BigInteger.valueOf(new Random().nextInt());
 			//System.out.println("LOL");
 		}
-		System.out.println(publicKey);
+		//System.out.println(publicKey);
 		privateKeyGenerator(publicKey);
 		return new String[] {RSA.toString(), publicKey.toString()};
 	}

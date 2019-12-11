@@ -11,7 +11,7 @@ interface PaddingScheme{
 public class Padding implements PaddingScheme {
 	public String padding(String s, int length) {
 		StringBuilder sb = new StringBuilder(s);
-		if (s.length() >= length) return null;
+		//if (s.length() >= length) return null;
 		sb.append('1');
 		while (sb.length() < length) {
 			sb.append('0');
