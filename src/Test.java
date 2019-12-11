@@ -11,7 +11,7 @@ public class Test {
 		// TODO Auto-generated method stub
 		//System.out.print("aaa");
 		int sum = 0;	
-		for (int i=0; i<1000; i++) {
+	//	for (int i=0; i<1000; i++) {
 		
 		Padding pad = new Padding();
 		Encode encoder = new Encode(pad);
@@ -22,15 +22,15 @@ public class Test {
 		String RSA = str[0];
 		String key = str[1];
 		
-		String origin = "The quick brown fox jumps over the lazy dog";
+		String origin = "The quick brown fox jumps over the lazy dog The quick brown fox jumps over the";
 		String encry_message = encoder.encode(origin, RSA, key);
-		//System.out.println(encry_message);
+		System.out.println(encry_message);
 	
 		BigInteger bg = new BigInteger (encry_message);
 
 		if (rsa.decode(encry_message).compareTo(origin)!=0) sum++;
-		
-		}
-		System.out.println(sum);
+		System.out.println(rsa.decode(encry_message));
+		//}
+		//System.out.println(sum);
 	}
 }
